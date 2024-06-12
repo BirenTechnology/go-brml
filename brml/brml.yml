@@ -1,0 +1,52 @@
+---
+GENERATOR:
+  PackageName: brml
+  PackageDescription: "test gen"
+  PackageLicense: ""
+  Includes: ["brml.h"]
+  FlagGroups:
+    - {name: "LDFLAGS", flags: ["-Wl,--unresolved-symbols=ignore-in-object-files"]}
+PARSER:
+  SourcesPaths: ["brml.h"]
+TRANSLATOR:
+  ConstRules:
+    defines: eval
+    enum: eval
+  PtrTips:
+    function:
+      - {target: "^brml", default: "sref"}
+  MemTips:
+    - {target: "^brml", default: "raw"}
+  Rules:
+    const:
+      - {action: accept, from: "^BRML_"}
+      - {action: accept, from: "^brml"}
+      - {action: ignore, from: "BRML_VGPU_VIRTUALIZATION_CAP_MIGRATION"}
+      - {action: ignore, from: "BRML_VGPU_PGPU_VIRTUALIZATION_CAP_MIGRATION"}
+      - {action: ignore, from: "brmlEccBitType_t"}
+      - {action: replace, from: "^BRML_"}
+      - {action: replace, from: "^brml"}
+      - {action: replace, from: "_t$"}
+      - {transform: export}
+    type:
+      - {action: accept, from: "^brml"}
+      - {action: replace, from: "^brml"}
+      - {action: replace, from: "_t$"}
+      - {transform: export}
+      - {action: replace, from: "^VgpuMetadata", to: "brmlVgpuMetadata"}
+      - {action: replace, from: "^VgpuPgpuMetadata", to: "brmlVgpuPgpuMetadata"}
+    function:
+      - {action: accept, from: "^brml"}
+      - {action: replace, from: "^brmlInit$", to: "brmlInit"}
+      - {action: replace, from: "^brmlDeviceGetPciInfo$", to: "brmlDeviceGetPciInfo_v1"}
+      - {action: replace, from: "^brmlDeviceGetCount$", to: "brmlDeviceGetCount_v1"}
+      - {action: replace, from: "^brmlDeviceGetHandleByIndex$", to: "brmlDeviceGetHandleByIndex_v1"}
+      - {action: replace, from: "^brmlDeviceGetHandleByPciBusId$", to: "brmlDeviceGetHandleByPciBusId_v1"}
+      - {action: replace, from: "^brmlDeviceGetNvLinkRemotePciInfo$", to: "brmlDeviceGetNvLinkRemotePciInfo_v1"}
+      - {action: replace, from: "^brmlDeviceRemoveGpu$", to: "brmlDeviceRemoveGpu_v1"}
+      - {action: replace, from: "^brmlDeviceGetGridLicensableFeatures$", to: "brmlDeviceGetGridLicensableFeatures_v1"}
+      - {action: replace, from: "^brmlEventSetWait$", to: "brmlEventSetWait_v1"}
+      - {action: replace, from: "^brmlDeviceGetAttributes$", to: "brmlDeviceGetAttributes_v1"}
+      - {action: replace, from: "^brmlDeviceGetComputeRunningProcesses$", to: "brmlDeviceGetComputeRunningProcesses_v1"}
+      - {action: replace, from: "^brmlDeviceGetGraphicsRunningProcesses$", to: "brmlDeviceGetGraphicsRunningProcesses_v1"}
+      - {transform: unexport}
