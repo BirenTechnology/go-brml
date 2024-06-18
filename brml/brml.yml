@@ -1,7 +1,7 @@
 ---
 GENERATOR:
   PackageName: brml
-  PackageDescription: "test gen"
+  PackageDescription: "BRML Generation"
   PackageLicense: ""
   Includes: ["brml.h"]
   FlagGroups:
@@ -42,7 +42,6 @@ TRANSLATOR:
       - {action: replace, from: "^brmlDeviceGetCount$", to: "brmlDeviceGetCount_v1"}
       - {action: replace, from: "^brmlDeviceGetHandleByIndex$", to: "brmlDeviceGetHandleByIndex_v1"}
       - {action: replace, from: "^brmlDeviceGetHandleByPciBusId$", to: "brmlDeviceGetHandleByPciBusId_v1"}
-      - {action: replace, from: "^brmlDeviceGetNvLinkRemotePciInfo$", to: "brmlDeviceGetNvLinkRemotePciInfo_v1"}
       - {action: replace, from: "^brmlDeviceRemoveGpu$", to: "brmlDeviceRemoveGpu_v1"}
       - {action: replace, from: "^brmlDeviceGetGridLicensableFeatures$", to: "brmlDeviceGetGridLicensableFeatures_v1"}
       - {action: replace, from: "^brmlEventSetWait$", to: "brmlEventSetWait_v1"}
